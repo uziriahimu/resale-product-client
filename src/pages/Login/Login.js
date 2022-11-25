@@ -1,25 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthProvider';
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
+    const { signIn } = useContext(AuthContext);
 
     const handleLogin = data => {
-        console.log(data)
-        // console.log(data);
-        // setLoginError('');
-        // signIn(data.email, data.password)
-        //     .then(result => {
-        //         const user = result.user;
-        //         console.log(user);
-        //         setLoginUserEmail(data.email)
 
-        //     })
-        //     .catch(error => {
-        //         console.log(error.message)
-        //         setLoginError(error.message);
-        //     });
+        console.log(data);
+        // setLoginError('');
+        signIn(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                // setLoginUserEmail(data.email)
+
+            })
+            .catch(error => {
+                console.log(error.message)
+                // setLoginError(error.message);
+            });
     }
     return (
         <div className='h-[800px] flex justify-center items-center'>
