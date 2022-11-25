@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaArrowRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Category = ({ category }) => {
     const { name, description, img } = category;
@@ -9,9 +10,9 @@ const Category = ({ category }) => {
                 <img src={img} alt="Shoes" className="rounded-xl w-full h-96" />
             </figure>
             <div className="card-body items-center text-center">
-                <div className=''>
+                <div className='flex justify-center items-center'>
                     <h2 className="card-title">{name} </h2>
-                    <FaArrowRight className='ml-5'></FaArrowRight>
+                    <Link> <button>   <FaArrowRight className='ml-5'></FaArrowRight></button></Link>
                 </div>
                 <p>{description}</p>
             </div>
