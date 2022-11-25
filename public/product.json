@@ -1,0 +1,17 @@
+[
+    {
+        "category_id": "01",
+        "name": "Novel",
+        "img": "https://images.unsplash.com/photo-1655420968703-2b0a8f20d538?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fG5vdmVsJTIwYm9va3N8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+    },
+    {
+        "category_id": " 02",
+        " name": "Science Fiction",
+        "img": "https://media.istockphoto.com/id/1308595699/photo/book-of-the-universe-opened-magic-book-with-planets-and-galaxies-elements-of-this-image.jpg?b=1&s=170667a&w=0&k=20&c=0cXMJOTsESNa1R_82WcSTKgqGxk2UUw6j0lNr-NELr4="
+    },
+    {
+        "category_id": "03",
+        "name": "Fantasy books",
+        "img": "https://media.istockphoto.com/id/546022488/photo/magical-mushroom-house.jpg?b=1&s=170667a&w=0&k=20&c=LEXntUCnHEng46pELd0DILgqjX3GiflC5CjL6sv5JYE="
+    }
+]
