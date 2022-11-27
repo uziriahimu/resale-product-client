@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
+import BookNow from '../BookNow/BookNow';
 
 const Product = () => {
     const product = useLoaderData()
@@ -27,9 +28,18 @@ const Product = () => {
 
 
                 </div>
-                <Link to="/booking"><button className='w-full btn bg-gradient-to-r from-orange-600 to-black text-white'>Book Now</button></Link>
+                <label
 
+                    htmlFor="booking-modal"
+                    className='w-full btn bg-gradient-to-r from-orange-600 to-black text-white'
+                >Book Now</label>
             </div>
+
+            {
+                <BookNow
+                    product={product}
+                ></BookNow>
+            }
         </div>
     );
 };
