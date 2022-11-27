@@ -31,27 +31,25 @@ const BookNow = ({ product }) => {
             price
         }
 
-        // TODO: send data to the server
-        // and once data is saved then close the modal 
-        // and display success toast
-        // fetch('https://doctors-portal-server-red.vercel.app/bookings', {
-        //     method: 'POST',
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify(booking)
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         console.log(data);
-        //         if (data.acknowledged) {
-        //             toast.success('Booking confirmed');
 
-        //         }
-        //         else {
-        //             toast.error(data.message);
-        //         }
-        //     })
+        fetch('http://localhost:5000/bookings', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(booking)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    toast.success('Booking confirmed');
+
+                }
+                else {
+                    toast.error(data.message);
+                }
+            })
 
 
     }

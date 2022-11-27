@@ -52,26 +52,11 @@ const Login = () => {
                             className="input input-bordered w-full max-w-xs" />
                         {errors.email && <p className='text-red-600'>{errors.email?.message}</p>}
                     </div>
-                    <div className='m-3'>
-                        <label htmlFor=" User">
-                            <input
-                                {...register("select")}
-                                type="radio"
-                                value=" User"
-                                id="User"
-                            />
-                            User
-                        </label> <br />
-                        <label htmlFor="seller">
-                            <input
-                                {...register("select")}
-                                type="radio"
-                                value="seller"
-                                id="seller"
-                            />
-                            Seller
-                        </label>
-                    </div>
+                    <select {...register("option", { required: true })}>
+                        <option value="Buyer">Buyer</option>
+                        <option value="Seller">Seller</option>
+
+                    </select>
                     <div className="form-control w-full max-w-xs">
                         <label className="label"> <span className="label-text">Password</span></label>
                         <input type="password"

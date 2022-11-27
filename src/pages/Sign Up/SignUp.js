@@ -12,19 +12,18 @@ const SignUp = () => {
 
 
     const handleSignUp = (data) => {
-        console.log(data)
         // setSignUPError('');
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                toast.success('User Created Successfully.')
+                toast('User Created Successfully.')
                 const userInfo = {
                     displayName: data.name
                 }
                 updateUser(userInfo)
                     .then(() => {
-                        // savedUser(data.name, data.email)
+                        savedUser(data.name, data.email, data.option)
                     })
                     .catch(err => console.log(err));
             })
@@ -32,6 +31,23 @@ const SignUp = () => {
                 console.log(error)
                 // setSignUPError(error.message)
             });
+    }
+
+    const savedUser = (name, email, option) => {
+        const user = { name, email, option }
+
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                // setCreateUserEmail(email)
+
+            })
     }
 
 
@@ -48,7 +64,7 @@ const SignUp = () => {
 
 
     return (
-        <div className='h-[800px] flex justify-center items-center'>
+        <div className='h-[800px] flex justify-center items-center mt-32'>
             <div className='w-96 p-7'>
                 <h2 className='text-xl text-center'>Sign Up</h2>
                 <form onSubmit={handleSubmit(handleSignUp)}>
@@ -75,26 +91,11 @@ const SignUp = () => {
                         })} className="input input-bordered w-full max-w-xs" />
                         {errors.password && <p className='text-red-500'>{errors.password.message}</p>}
                     </div>
-                    <div className='m-3'>
-                        <label htmlFor=" User">
-                            <input
-                                {...register("select")}
-                                type="radio"
-                                value=" User"
-                                id="User"
-                            />
-                            User
-                        </label> <br />
-                        <label htmlFor="seller">
-                            <input
-                                {...register("select")}
-                                type="radio"
-                                value="seller"
-                                id="seller"
-                            />
-                            Seller
-                        </label>
-                    </div>
+                    <select {...register("option", { required: true })}>
+                        <option value="Buyer">Buyer</option>
+                        <option value="Seller">Seller</option>
+
+                    </select>
                     <input className='btn btn-accent w-full mt-4' value="Sign Up" type="submit" />
                     {/* {signUpError && <p className='text-red-600'>{signUpError}</p>} */}
                 </form>
