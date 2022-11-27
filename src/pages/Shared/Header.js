@@ -14,10 +14,11 @@ const Header = () => {
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/blog'>Blog</Link></li>
         <li><Link to='/category'>Category</Link></li>
+        <li><Link to='/addproducts'>Add Products</Link></li>
         {
             user?.uid ?
                 <>
-                    <li><Link to='/dashboard'>Dashboard</Link></li>
+                    {/* <li><Link to='/dashboard'>Dashboard</Link></li> */}
                     <li><button onClick={handleLogOut}>Sign Out</button> </li>
                 </>
                 :
@@ -28,7 +29,7 @@ const Header = () => {
     </React.Fragment>
 
     return (
-        <div className="navbar bg-base-100 flex justify-between  bg-black text-white -mb-32 ">
+        <div className="navbar bg-base-100 flex justify-between bg-black text-white -mb-32 ">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
