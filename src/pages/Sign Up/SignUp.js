@@ -1,18 +1,25 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../context/AuthProvider';
+import useToken from '../../hooks/useToken';
 
 const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { createUser, updateUser, googleSignIn } = useContext(AuthContext);
+    const [signUpError, setSignUPError] = useState('')
+    const [createUserEmail, setCreateUserEmail] = useState('')
+    const [token] = useToken(createUserEmail)
     const navigate = useNavigate();
 
+    if (token) {
+        navigate('/')
+    }
 
 
     const handleSignUp = (data) => {
-        // setSignUPError('');
+        setSignUPError('');
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
@@ -29,7 +36,7 @@ const SignUp = () => {
             })
             .catch(error => {
                 console.log(error)
-                // setSignUPError(error.message)
+                setSignUPError(error.message)
             });
     }
 
@@ -45,7 +52,7 @@ const SignUp = () => {
         })
             .then(res => res.json())
             .then(data => {
-                // setCreateUserEmail(email)
+                setCreateUserEmail(email)
 
             })
     }
@@ -97,7 +104,7 @@ const SignUp = () => {
 
                     </select>
                     <input className='btn btn-accent w-full mt-4' value="Sign Up" type="submit" />
-                    {/* {signUpError && <p className='text-red-600'>{signUpError}</p>} */}
+                    {signUpError && <p className='text-red-600'>{signUpError}</p>}
                 </form>
                 <p>Already have an account <Link className='text-secondary' to="/login">Please Login</Link></p>
                 <div className="divider">OR</div>
