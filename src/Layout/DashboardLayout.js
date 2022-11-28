@@ -8,7 +8,7 @@ import Header from '../pages/Shared/Header';
 
 const DashboardLayout = () => {
     const { user } = useContext(AuthContext)
-    // const [isAdmin] = useAdmin(user?.email)
+    const [isAdmin] = useAdmin(user?.email)
     // const [isBuyer] = useBuyer(user?.email)
     // const [isSeller] = useSeller(user?.email)
     return (
@@ -26,12 +26,16 @@ const DashboardLayout = () => {
                     <ul className="menu p-4 w-80 text-base-content">
 
                         <li><Link to='/dashboard/orders'>My Orders</Link></li>
-                        <li><Link to='/dashboard/allusers'>All Users</Link></li>
 
+                        {/* <li><Link to='/dashboard/allusers'>All Users</Link></li> */}
                         <li><Link to='/dashboard/addproduct'>Add A Product</Link></li>
                         <li><Link to='/dashboard/myproduct'>My Product</Link></li>
                         <li><Link to='/dashboard/mybuyers'>My Buyers</Link></li>
+                        {
+                            isAdmin &&
+                            <li><Link to='/dashboard/allusers'>All Users</Link></li>
 
+                        }
                     </ul>
 
                 </div>

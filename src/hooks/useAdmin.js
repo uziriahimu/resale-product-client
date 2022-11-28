@@ -10,7 +10,7 @@ const useAdmin = email => {
                 .then(data => {
                     console.log(data);
                     setIsAdmin(data.isAdmin);
-                    setIsAdminLoading(false);
+                    setIsAdminLoading(true);
                 })
         }
     }, [email])
