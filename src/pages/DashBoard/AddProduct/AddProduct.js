@@ -1,15 +1,14 @@
 import React from 'react';
 import toast from 'react-hot-toast';
 
-const AddProducts = () => {
-
+const AddProduct = () => {
     const handleSubmit = event => {
         event.preventDefault()
         const form = event.target
         const categoryId = form.categoryId.value
         const Sname = form.sname.value
         const pname = form.pname.value
-        const title = form.title.value
+        const condition = form.condition.value
         const pic = form.pic.value
         const location = form.location.value
         const original = form.original.value
@@ -17,10 +16,11 @@ const AddProducts = () => {
         const time = form.time.value
         const year = form.year.value
 
-        const review = {
+        const product = {
             category_id: categoryId,
             Seller: Sname,
             Product: pname,
+            condition: condition,
             location,
             original,
             resale,
@@ -28,18 +28,18 @@ const AddProducts = () => {
             time,
             pic
         }
-        fetch('http://localhost:5000/product', {
+        fetch('http://localhost:5000/myproduct', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
             },
-            body: JSON.stringify(review)
+            body: JSON.stringify(product)
         })
             .then(res => res.json())
             .then(data => {
                 console.log(data)
                 if (data.acknowledged) {
-                    toast.info('review placed successfully')
+                    toast.info('Product placed successfully')
                     form.reset();
 
                 }
@@ -48,7 +48,7 @@ const AddProducts = () => {
 
     }
     return (
-        <div className='w-1/2 mx-auto border rounded-lg p-5 mt-60  bg-gray-100' >
+        <div className='w-1/2 mx-auto border rounded-lg p-5 mt-12  bg-gray-100' >
             <form onSubmit={handleSubmit} className="card-body  bg-slate-300 mb-3 rounded">
                 <div className="form-control">
                     <label className="label">
@@ -67,6 +67,12 @@ const AddProducts = () => {
                         <span className="label-text">Product Name</span>
                     </label>
                     <input type="text" name='pname' placeholder="product name" className="input input-bordered" />
+                </div>
+                <div className="form-control">
+                    <label className="label">
+                        <span className="label-text">Product Condition</span>
+                    </label>
+                    <input type="text" name='condition' placeholder="Product Condition" className="input input-bordered" />
                 </div>
                 <div className="form-control">
                     <label className="label">
@@ -118,8 +124,7 @@ const AddProducts = () => {
 
 
         </div>
-
     );
 };
 
-export default AddProducts;
+export default AddProduct;

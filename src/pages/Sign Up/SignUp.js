@@ -23,7 +23,7 @@ const SignUp = () => {
                 }
                 updateUser(userInfo)
                     .then(() => {
-                        savedUser(data.name, data.email, data.option)
+                        savedUser(data.name, data.email, data.role)
                     })
                     .catch(err => console.log(err));
             })
@@ -33,8 +33,8 @@ const SignUp = () => {
             });
     }
 
-    const savedUser = (name, email, option) => {
-        const user = { name, email, option }
+    const savedUser = (name, email, role) => {
+        const user = { name, email, role }
 
         fetch('http://localhost:5000/users', {
             method: 'POST',
@@ -91,7 +91,7 @@ const SignUp = () => {
                         })} className="input input-bordered w-full max-w-xs" />
                         {errors.password && <p className='text-red-500'>{errors.password.message}</p>}
                     </div>
-                    <select {...register("option", { required: true })}>
+                    <select {...register("role", { required: true })}>
                         <option value="Buyer">Buyer</option>
                         <option value="Seller">Seller</option>
 
