@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../context/AuthProvider';
 
 const AddProduct = () => {
+    const { user } = useContext(AuthContext)
+    const navigate = useNavigate()
+
     const handleSubmit = event => {
         event.preventDefault()
         const form = event.target
         const categoryId = form.categoryId.value
         const Sname = form.sname.value
+        const email = form.email.value
         const pname = form.pname.value
         const condition = form.condition.value
         const pic = form.pic.value
@@ -19,6 +25,7 @@ const AddProduct = () => {
         const product = {
             category_id: categoryId,
             Seller: Sname,
+            email: email,
             Product: pname,
             condition: condition,
             location,
@@ -28,7 +35,7 @@ const AddProduct = () => {
             time,
             pic
         }
-        fetch('http://localhost:5000/myproduct', {
+        fetch('http://localhost:5000/product', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -39,8 +46,10 @@ const AddProduct = () => {
             .then(data => {
                 console.log(data)
                 if (data.acknowledged) {
-                    toast.info('Product placed successfully')
+                    toast.success("product placed successfully")
                     form.reset();
+                    navigate('/dashboard/myproduct')
+
 
                 }
             })
@@ -60,7 +69,13 @@ const AddProduct = () => {
                     <label className="label">
                         <span className="label-text">Seller Name</span>
                     </label>
-                    <input type="text" name='sname' placeholder="seller name" className="input input-bordered" />
+                    <input type="text" defaultValue={user?.displayName} name='sname' placeholder="seller name" className="input input-bordered" />
+                </div>
+                <div className="form-control">
+                    <label className="label">
+                        <span className="label-text">Email</span>
+                    </label>
+                    <input type="email" defaultValue={user?.email} name='email' placeholder="Email" className="input input-bordered" />
                 </div>
                 <div className="form-control">
                     <label className="label">

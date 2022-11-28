@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../../context/AuthProvider';
 
@@ -10,11 +10,20 @@ const MyProducts = () => {
     const { data: products = [], refetch } = useQuery({
         queryKey: ['products'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/product')
+            const res = await fetch(`http://localhost:5000/myproduct?email=${user?.email}`)
             const data = await res.json()
             return data
         }
     })
+    // useEffect(() => {
+    //     fetch(`http://localhost:5000/myproduct?email=${user?.email}`)
+
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             setUpdates(data);
+    //         })
+    // }, [user?.email, logOut])
+
 
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure, you want to Delete');
@@ -67,7 +76,7 @@ const MyProducts = () => {
 
     return (
         <div>
-            <h2 className="text-3xl">All Users</h2>
+            <h2 className="text-3xl">My Products</h2>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
