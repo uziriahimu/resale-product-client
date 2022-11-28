@@ -26,6 +26,7 @@ const MyProducts = () => {
                 .then(data => {
                     console.log(data);
                     if (data.deletedCount > 0) {
+                        refetch()
                         toast.success('Deleted successfully')
                         const remaining = updates.filter(up => up._id !== id);
                         setUpdates(remaining);
@@ -49,6 +50,7 @@ const MyProducts = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount > 0) {
+                    refetch()
                     toast.success(' Update successfully')
                     const remaining = updates.filter(up => up._id !== id);
                     const approving = updates.find(up => up._id === id);
@@ -88,7 +90,7 @@ const MyProducts = () => {
                                     <button onClick={() => handleUpdate(product._id)} className="btn btn-primary btn-xs">{product.status ? product.status : 'Available'}</button>
                                 </td>
 
-                                <td><button onClick={handleDelete} className='btn btn-xs btn-danger'>Delete</button></td>
+                                <td><button onClick={() => handleDelete(product._id)} className='btn btn-xs btn-danger'>Delete</button></td>
                             </tr>)
                         }
 
