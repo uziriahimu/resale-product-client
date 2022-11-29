@@ -39,5 +39,7 @@ Your app is ready to be deployed!
 
 See the section about deployment for more information.
 
-Live site: 
+Live site: https://resale-market-3463b.web.app/
 
+adminEmail: \<anamika@gmail.com\>
+adminPassword: \<123456\>
