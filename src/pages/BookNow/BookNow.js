@@ -6,7 +6,7 @@ import { AuthContext } from '../../context/AuthProvider';
 const BookNow = ({ product }) => {
 
     const { user } = useContext(AuthContext)
-    const { location, resale, Product } = product;
+    const { location, resale, Product, pic } = product;
     console.log(product);
 
 
@@ -17,6 +17,7 @@ const BookNow = ({ product }) => {
         const meeting = form.meeting.value;
         const location = form.location.value;
         const product = form.product.value;
+        const pic = form.pic.value
         const name = form.name.value;
         const email = form.email.value;
         const phone = form.phone.value;
@@ -24,6 +25,7 @@ const BookNow = ({ product }) => {
         const booking = {
             meeting_location: meeting,
             item_name: product,
+            pic: pic,
             Seller: name,
             email,
             location,
@@ -63,7 +65,13 @@ const BookNow = ({ product }) => {
                     <form onSubmit={handleBooking} className='grid grid-cols-1 gap-3 mt-10'>
 
                         <input name="name" type="text" defaultValue={user?.displayName} disabled placeholder="Your Name" className="input w-full input-bordered" />
+
                         <input name="email" type="email" defaultValue={user?.email} disabled placeholder="Email Address" className="input w-full input-bordered" />
+
+
+                        <input type="text" defaultValue={pic} name='pic' placeholder="Picture of product" className="input input-bordered" />
+
+
 
                         <input name="location" type="text" defaultValue={location} disabled placeholder="Location" className="input w-full input-bordered" />
 
