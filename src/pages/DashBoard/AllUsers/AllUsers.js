@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState } from 'react';
 import toast from 'react-hot-toast';
+import { FaBeer, FaCheck } from 'react-icons/fa';
 
 const AllUsers = () => {
-
+    const [updates, setUpdates] = useState([])
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
@@ -29,9 +30,54 @@ const AllUsers = () => {
                 }
             })
     }
+
+    const handleUpdate = id => {
+        fetch(`http://localhost:5000/users/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+
+            },
+            body: JSON.stringify({ status: 'verified' })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    refetch()
+                    toast.success(' Update successfully')
+                    const remaining = updates.filter(up => up._id !== id);
+                    const approving = updates.find(up => up._id === id);
+                    approving.status = 'verified'
+                    const newUpdates = [approving, ...remaining];
+                    setUpdates(newUpdates);
+
+
+                }
+            })
+    }
+
+
+    const handleDelete = id => {
+        const proceed = window.confirm('Are you sure, you want to Delete');
+        if (proceed) {
+            fetch(`http://localhost:5000/users/${id}`, {
+                method: 'DELETE',
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.deletedCount > 0) {
+                        refetch()
+                        toast.success('Deleted successfully')
+                        const remaining = updates.filter(up => up._id !== id);
+                        setUpdates(remaining);
+                    }
+                })
+        }
+    }
     return (
         <div>
-            <h2 className="text-3xl">All Users</h2>
+            <h2 className="text-3xl text-orange-500 my-10 text-center"><i>All Users</i></h2>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
@@ -41,6 +87,7 @@ const AllUsers = () => {
                             <th>Email</th>
                             <th>Role</th>
                             <th>Admin</th>
+                            <th>Verify</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -55,7 +102,15 @@ const AllUsers = () => {
                                     user?.role !== 'admin' &&
                                     <button onClick={() => handleMakeAdmin(user._id)} className='btn btn-xs btn-primary'>Make Admin</button>
                                 }</td>
-                                <td><button className='btn btn-xs btn-danger'>Delete</button></td>
+                                <td>
+                                    {
+                                        user?.status ?
+                                            <FaCheck className=' text-blue-600 text-2xl'></FaCheck>
+                                            :
+                                            <button onClick={() => handleUpdate(user._id)} className="btn btn-primary btn-xs">{user.status ? user.status : 'Unverified'}</button>
+                                    }
+                                </td>
+                                <td><button onClick={() => handleDelete(user?._id)} className='btn btn-xs btn-danger' >Delete</button></td>
                             </tr>)
                         }
 

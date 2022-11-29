@@ -5,7 +5,6 @@ import Blog from "../pages/Blog/Blog";
 import Categories from "../pages/Category/Categories";
 import AddProduct from "../pages/DashBoard/AddProduct/AddProduct";
 import AllUsers from "../pages/DashBoard/AllUsers/AllUsers";
-import MyBuyers from "../pages/DashBoard/MyBuyers/MyBuyers";
 import MyOrders from "../pages/DashBoard/MyOrders/MyOrders";
 import MyProducts from "../pages/DashBoard/MyProducts/MyProducts";
 import Payment from "../pages/DashBoard/Payment/Payment";
@@ -14,7 +13,6 @@ import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Product from "../pages/Products/Product";
 import SignUp from "../pages/Sign Up/SignUp";
-import AdminRoute from "./AdminRoute";
 import BuyersRoute from "./BuyersRoute";
 import PrivateRoute from "./PrivateRoute";
 import SellerRoute from "./SellerRoute";
@@ -63,8 +61,9 @@ export const routes = createBrowserRouter([
 
             {
                 path: '/dashboard/allusers',
-                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+                element: <AllUsers></AllUsers>
             },
+
             {
                 path: '/dashboard/orders',
                 element: <BuyersRoute><MyOrders></MyOrders></BuyersRoute>
@@ -77,10 +76,7 @@ export const routes = createBrowserRouter([
                 path: '/dashboard/myproduct',
                 element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
             },
-            {
-                path: '/dashboard/mybuyers',
-                element: <SellerRoute><MyBuyers></MyBuyers></SellerRoute>
-            },
+
             {
 
                 path: '/dashboard/payment/:id',
