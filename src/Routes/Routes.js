@@ -5,6 +5,7 @@ import Blog from "../pages/Blog/Blog";
 import Categories from "../pages/Category/Categories";
 import AddProduct from "../pages/DashBoard/AddProduct/AddProduct";
 import AllUsers from "../pages/DashBoard/AllUsers/AllUsers";
+import MyBuyers from "../pages/DashBoard/MyBuyers/MyBuyers";
 import MyOrders from "../pages/DashBoard/MyOrders/MyOrders";
 import MyProducts from "../pages/DashBoard/MyProducts/MyProducts";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
@@ -14,6 +15,7 @@ import Product from "../pages/Products/Product";
 import SignUp from "../pages/Sign Up/SignUp";
 import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
+import SellerRoute from "./SellerRoute";
 
 export const routes = createBrowserRouter([
     {
@@ -67,15 +69,15 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/dashboard/addproduct',
-                element: <AddProduct></AddProduct>
+                element: <SellerRoute><AddProduct></AddProduct></SellerRoute>
             },
             {
                 path: '/dashboard/myproduct',
-                element: <MyProducts></MyProducts>
+                element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
             },
             {
                 path: '/dashboard/mybuyers',
-                element: <AddProduct></AddProduct>
+                element: <SellerRoute><MyBuyers></MyBuyers></SellerRoute>
             },
 
         ]

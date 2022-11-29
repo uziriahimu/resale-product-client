@@ -14,7 +14,6 @@ const Header = () => {
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/blog'>Blog</Link></li>
         <li><Link to='/category'>Category</Link></li>
-        <li><Link to='/addproducts'>Add Products</Link></li>
 
         {
             user?.uid ?
