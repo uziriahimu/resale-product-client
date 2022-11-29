@@ -8,8 +8,8 @@ const Bannar = () => {
                 <div className="hero-overlay bg-opacity-50"></div>
                 <div className="hero-content text-center text-neutral-content ">
                     <div className="max-w-md">
-                        <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
-                        <p className="mb-5">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                        <h1 className="mb-5 text-5xl font-bold">Hello Book Lovers </h1>
+                        <p className="mb-5">Reading reduces stress. Reading about something you enjoy or losing yourself in a good novel is an excellent way to relax. It can ease tension in your muscles and heart while letting your brain wander to new ideas and live in someone else's shoes. Reading is a mini vacation for your brain!</p>
                         <button className="btn btn-primary bg-gradient-to-r from-orange-600 to-black text-white">Get Started</button>
                     </div>
                 </div>

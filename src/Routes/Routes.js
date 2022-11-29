@@ -12,6 +12,7 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Product from "../pages/Products/Product";
+import Products from "../pages/Products/Products";
 import SignUp from "../pages/Sign Up/SignUp";
 import BuyersRoute from "./BuyersRoute";
 import PrivateRoute from "./PrivateRoute";
@@ -42,13 +43,11 @@ export const routes = createBrowserRouter([
                 path: '/signup',
                 element: <SignUp></SignUp>
             },
-
             {
                 path: '/category/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`),
-                element: <Product></Product>
-
-            },
+                loader: ({ params }) => fetch(`https://resale-product-server.vercel.app/category/${params.id}`),
+                element: <Products></Products>
+            }
 
 
         ]
@@ -81,7 +80,7 @@ export const routes = createBrowserRouter([
 
                 path: '/dashboard/payment/:id',
                 element: <Payment></Payment>,
-                loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`)
+                loader: ({ params }) => fetch(`https://resale-product-server.vercel.app/bookings/${params.id}`)
             },
 
         ]

@@ -34,7 +34,7 @@ const BookNow = ({ product }) => {
         }
 
 
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://resale-product-server.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

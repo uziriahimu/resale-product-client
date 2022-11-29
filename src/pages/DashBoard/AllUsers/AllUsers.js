@@ -8,14 +8,14 @@ const AllUsers = () => {
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users')
+            const res = await fetch('https://resale-product-server.vercel.app/users')
             const data = await res.json()
             return data
         }
     })
 
     const handleMakeAdmin = id => {
-        fetch(`http://localhost:5000/users/admin/${id}`, {
+        fetch(`https://resale-product-server.vercel.app/users/admin/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -32,7 +32,7 @@ const AllUsers = () => {
     }
 
     const handleUpdate = id => {
-        fetch(`http://localhost:5000/users/${id}`, {
+        fetch(`https://resale-product-server.vercel.app/users/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
@@ -60,7 +60,7 @@ const AllUsers = () => {
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure, you want to Delete');
         if (proceed) {
-            fetch(`http://localhost:5000/users/${id}`, {
+            fetch(`https://resale-product-server.vercel.app/users/${id}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())

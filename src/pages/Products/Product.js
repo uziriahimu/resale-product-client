@@ -1,14 +1,23 @@
-import React from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import React, { useContext } from 'react';
+import { FaCheck } from 'react-icons/fa';
 import BookNow from '../BookNow/BookNow';
 
-const Product = () => {
-    const product = useLoaderData()
+const Product = ({ product }) => {
 
     const { pic, Seller, location, original, resale, year, time, Product, } = product;
 
+    const { data: users = [], refetch } = useQuery({
+        queryKey: ['users'],
+        queryFn: async () => {
+            const res = await fetch('https://resale-product-server.vercel.app/users')
+            const data = await res.json()
+            return data
+        }
+    })
+
     return (
-        <div className='grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-[1440px] mx-auto  mt-52 '>
+        <div>
             <div className="card bg-base-100 shadow-xl border mt-20 p-4">
                 <figure className="px-10 pt-10">
                     <img src={pic} alt="Shoes" className="rounded-xl w-full h-96" />

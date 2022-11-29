@@ -10,7 +10,7 @@ const MyProducts = () => {
     const { data: products = [], refetch } = useQuery({
         queryKey: ['products'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/myproduct?email=${user?.email}`)
+            const res = await fetch(`https://resale-product-server.vercel.app/myproduct?email=${user?.email}`)
             const data = await res.json()
             return data
         }
@@ -21,7 +21,7 @@ const MyProducts = () => {
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure, you want to Delete');
         if (proceed) {
-            fetch(`http://localhost:5000/product/${id}`, {
+            fetch(`https://resale-product-server.vercel.app/product/${id}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())
@@ -41,7 +41,7 @@ const MyProducts = () => {
 
 
     const handleUpdate = id => {
-        fetch(`http://localhost:5000/product/${id}`, {
+        fetch(`https://resale-product-server.vercel.app/product/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
