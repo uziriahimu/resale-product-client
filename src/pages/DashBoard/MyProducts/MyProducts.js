@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../../context/AuthProvider';
 
 const MyProducts = () => {
-    const { user, logOut } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const [updates, setUpdates] = useState([])
 
     const { data: products = [], refetch } = useQuery({
@@ -15,14 +15,7 @@ const MyProducts = () => {
             return data
         }
     })
-    // useEffect(() => {
-    //     fetch(`http://localhost:5000/myproduct?email=${user?.email}`)
 
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             setUpdates(data);
-    //         })
-    // }, [user?.email, logOut])
 
 
     const handleDelete = id => {
@@ -76,7 +69,7 @@ const MyProducts = () => {
 
     return (
         <div>
-            <h2 className="text-3xl">My Products</h2>
+            <h2 className="text-3xl text-orange-500 text-center my-10"><i>My Products</i></h2>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
