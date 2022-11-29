@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react"
 
-const useBuyer = option => {
+const useBuyer = email => {
     const [isBuyer, setIsBuyer] = useState(false);
     const [isBuyerLoading, setIsBuyerLoading] = useState(true);
     useEffect(() => {
-        if (option) {
-            fetch(`http://localhost:5000/users/${option}`)
+        if (email) {
+            fetch(`http://localhost:5000/users/buyer/${email}`)
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
-                    setIsBuyer(data.Buyer);
+                    setIsBuyer(data.isBuyer);
                     setIsBuyerLoading(false);
                 })
         }
-    }, [option])
+    }, [email])
     return [isBuyer, isBuyerLoading]
 }
 
