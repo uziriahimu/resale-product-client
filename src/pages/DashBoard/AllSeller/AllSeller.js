@@ -1,38 +1,23 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
-import { FaBeer, FaCheck } from 'react-icons/fa';
+import { FaCheck } from 'react-icons/fa';
 
-const AllUsers = () => {
+
+const AllSeller = () => {
     const [updates, setUpdates] = useState([])
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch('https://resale-product-server.vercel.app/users')
+            const res = await fetch('http://localhost:5000/users/seller')
             const data = await res.json()
             return data
         }
     })
 
-    const handleMakeAdmin = id => {
-        fetch(`https://resale-product-server.vercel.app/users/admin/${id}`, {
-            method: 'PUT',
-            headers: {
-                authorization: `bearer ${localStorage.getItem('accessToken')}`
-            }
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data.modifiedCount > 0) {
-                    toast.success('Make admin successful.')
-                    refetch();
-                }
-            })
-    }
 
     const handleUpdate = id => {
-        fetch(`https://resale-product-server.vercel.app/users/${id}`, {
+        fetch(`http://localhost:5000/users/seller/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
@@ -56,11 +41,10 @@ const AllUsers = () => {
             })
     }
 
-
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure, you want to Delete');
         if (proceed) {
-            fetch(`https://resale-product-server.vercel.app/users/${id}`, {
+            fetch(`http://localhost:5000/users/seller/${id}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())
@@ -77,7 +61,7 @@ const AllUsers = () => {
     }
     return (
         <div>
-            <h2 className="text-3xl text-orange-500 my-10 text-center"><i>All Users</i></h2>
+            <h2 className="text-3xl text-orange-500 my-10 text-center"><i>All Sellers</i></h2>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
@@ -86,7 +70,6 @@ const AllUsers = () => {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
-                            <th>Admin</th>
                             <th>Verify</th>
                             <th>Delete</th>
                         </tr>
@@ -98,10 +81,6 @@ const AllUsers = () => {
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td>{user.role}</td>
-                                <td> {
-                                    user?.role !== 'admin' &&
-                                    <button onClick={() => handleMakeAdmin(user._id)} className='btn btn-xs btn-primary'>Make Admin</button>
-                                }</td>
                                 <td>
                                     {
                                         user?.status ?
@@ -117,7 +96,8 @@ const AllUsers = () => {
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div >
     );
 };
-export default AllUsers;
+
+export default AllSeller;

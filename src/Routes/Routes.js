@@ -4,16 +4,17 @@ import Main from "../Layout/Main";
 import Blog from "../pages/Blog/Blog";
 import Categories from "../pages/Category/Categories";
 import AddProduct from "../pages/DashBoard/AddProduct/AddProduct";
-import AllUsers from "../pages/DashBoard/AllUsers/AllUsers";
+import AllBuyer from "../pages/DashBoard/AllBuyer/AllBuyer";
+import AllSeller from "../pages/DashBoard/AllSeller/AllSeller";
 import MyOrders from "../pages/DashBoard/MyOrders/MyOrders";
 import MyProducts from "../pages/DashBoard/MyProducts/MyProducts";
 import Payment from "../pages/DashBoard/Payment/Payment";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
-import Product from "../pages/Products/Product";
 import Products from "../pages/Products/Products";
 import SignUp from "../pages/Sign Up/SignUp";
+import AdminRoute from "./AdminRoute";
 import BuyersRoute from "./BuyersRoute";
 import PrivateRoute from "./PrivateRoute";
 import SellerRoute from "./SellerRoute";
@@ -46,7 +47,7 @@ export const routes = createBrowserRouter([
             {
                 path: '/category/:id',
                 loader: ({ params }) => fetch(`https://resale-product-server.vercel.app/category/${params.id}`),
-                element: <Products></Products>
+                element: <PrivateRoute> <Products></Products></PrivateRoute>
             }
 
 
@@ -57,10 +58,13 @@ export const routes = createBrowserRouter([
         element: <DashboardLayout></DashboardLayout>,
 
         children: [
-
             {
-                path: '/dashboard/allusers',
-                element: <AllUsers></AllUsers>
+                path: '/dashboard/allseller',
+                element: <AllSeller></AllSeller>
+            },
+            {
+                path: '/dashboard/allbuyer',
+                element: <AllBuyer></AllBuyer>
             },
 
             {
@@ -75,6 +79,7 @@ export const routes = createBrowserRouter([
                 path: '/dashboard/myproduct',
                 element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
             },
+
 
             {
 
