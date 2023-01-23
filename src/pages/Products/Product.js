@@ -7,14 +7,6 @@ const Product = ({ product }) => {
 
     const { pic, Seller, location, original, resale, year, time, Product, } = product;
 
-    // const { data: users = [], refetch } = useQuery({
-    //     queryKey: ['users'],
-    //     queryFn: async () => {
-    //         const res = await fetch('https://resale-product-server.vercel.app/users')
-    //         const data = await res.json()
-    //         return data
-    //     }
-    // })
 
     return (
         <div>
@@ -28,19 +20,19 @@ const Product = ({ product }) => {
                     </div>
                 </div>
                 <div className='grid gap-4 grid-cols-2 px-5 mb-4'>
-                    <p><span className='text-xl text-orange-500 mr-2 font-semibold'>Location:</span>{location}</p>
-                    <p><span className='text-xl text-orange-500 mr-2 font-semibold'>Seller:</span>{Seller}</p>
-                    <p><span className='text-xl text-orange-500 mr-2 font-semibold'>original price:</span>{original}</p>
-                    <p><span className='text-xl text-orange-500 mr-2 font-semibold'>resale price:</span>{resale}</p>
-                    <p><span className='text-xl text-orange-500 mr-2 font-semibold'>Year of use:</span>{year}</p>
-                    <p><span className='text-xl text-orange-500 mr-2 font-semibold'>Post Date:</span>{time}</p>
+                    <p><span className='text-xl text-red-500 mr-2 font-semibold'>Location:</span>{location}</p>
+                    <p><span className='text-xl text-red-500 mr-2 font-semibold'>Seller:</span>{Seller}</p>
+                    <p><span className='text-xl text-red-500 mr-2 font-semibold'>original price:</span>{original}</p>
+                    <p><span className='text-xl text-red-500 mr-2 font-semibold'>resale price:</span>{resale}</p>
+                    <p><span className='text-xl text-red-500 mr-2 font-semibold'>Year of use:</span>{year}</p>
+                    <p><span className='text-xl text-red-500 mr-2 font-semibold'>Post Date:</span>{time}</p>
 
 
                 </div>
                 <label
 
                     htmlFor="booking-modal"
-                    className='w-full btn bg-gradient-to-r from-orange-600 to-black text-white'
+                    className='w-full btn bg-gradient-to-r from-red-400 to-red-700  text-black'
                 >Book Now</label>
             </div>
 

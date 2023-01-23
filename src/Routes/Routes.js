@@ -1,8 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Main from "../Layout/Main";
+import Allproduct from "../pages/AllProducts/Allproduct";
+import AllProducts from "../pages/AllProducts/AllProducts";
 import Blog from "../pages/Blog/Blog";
+import AllCategory from "../pages/Category/AllCategory";
 import Categories from "../pages/Category/Categories";
+import AddCategory from "../pages/DashBoard/AddCategory/AddCategory";
 import AddProduct from "../pages/DashBoard/AddProduct/AddProduct";
 import AllBuyer from "../pages/DashBoard/AllBuyer/AllBuyer";
 import AllSeller from "../pages/DashBoard/AllSeller/AllSeller";
@@ -12,6 +16,7 @@ import Payment from "../pages/DashBoard/Payment/Payment";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
+import Product from "../pages/Products/Product";
 import Products from "../pages/Products/Products";
 import SignUp from "../pages/Sign Up/SignUp";
 import AdminRoute from "./AdminRoute";
@@ -33,8 +38,12 @@ export const routes = createBrowserRouter([
                 element: <Blog></Blog>
             },
             {
-                path: '/category',
-                element: <Categories></Categories>
+                path: '/categories',
+                element: <AllCategory></AllCategory>
+            },
+            {
+                path: '/product',
+                element: <Allproduct></Allproduct>
             },
             {
                 path: '/login',
@@ -78,6 +87,10 @@ export const routes = createBrowserRouter([
             {
                 path: '/dashboard/myproduct',
                 element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
+            },
+            {
+                path: '/dashboard/addcategory',
+                element: <SellerRoute><AddCategory></AddCategory></SellerRoute>
             },
 
 

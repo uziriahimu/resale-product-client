@@ -13,7 +13,7 @@ const Header = () => {
     const menuItems = <React.Fragment>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/blog'>Blog</Link></li>
-        <li><Link to='/category'>Category</Link></li>
+        <li><Link to='/categories'>Category</Link></li>
 
         {
             user?.uid ?
@@ -28,7 +28,7 @@ const Header = () => {
     </React.Fragment >
     // -mb-32 
     return (
-        <div className="navbar bg-base-100 flex justify-between bg-black text-orange-500">
+        <div className="navbar  bg-base-100 flex justify-between font-bold text-red-400 mt-5">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -38,7 +38,7 @@ const Header = () => {
                         {menuItems}
                     </ul>
                 </div>
-                <Link className="btn btn-ghost normal-case text-xl">BookLand</Link>
+                <Link className=" normal-case text-xl">BookLand</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">

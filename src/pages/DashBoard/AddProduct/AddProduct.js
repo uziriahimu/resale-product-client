@@ -132,7 +132,7 @@ const AddProduct = () => {
 
                 </div>
                 <div className="form-control mt-6">
-                    <input className="btn bg-gradient-to-r from-orange-600 to-black text-white" type="submit" value="Add Product" />
+                    <input className="btn bg-gradient-to-r from-red-500 to-black text-white" type="submit" value="Add Product" />
                 </div>
             </form>
 
